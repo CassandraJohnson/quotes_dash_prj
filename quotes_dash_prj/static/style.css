@@ -1,0 +1,35 @@
+body {
+    font-family: sans-serif;
+}
+
+h1 {
+    margin: 20px;
+}
+
+#register {
+    vertical-align: top;
+    display: inline-block;
+    height: 700px;
+    width: 500px;
+    background-color: lightblue;
+    padding: 15px;
+}
+
+#login {
+    vertical-align: top;
+    display: inline-block;
+    height: 700px;
+    width: 500px;
+    background-color: lightblue;
+    padding: 15px;
+}
+
+.space {
+    margin: 50px;
+}
+
+input {
+    display: block;
+    margin: 5px;
+    font-size: 14pt;
+}

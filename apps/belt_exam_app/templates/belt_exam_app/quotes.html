@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Quotes Page</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body style = "padding: 10px 10px 10px 20px">
+        <div style="padding: 20px 20px 10px 90%">
+        <button style = "color:black" align="right" type="submit" class="btn btn-outline-success btn-lg">
+            <a href = '/logout'> Logout </a>
+        </button>
+        </div>
+        <div style="padding: 20px 20px 10px 90%">
+            <a href="users/edit/{{request.session.id}}">Edit Account</a>
+         </div>
+         
+        <h1 style="padding: 10px 0 20px 140px; color:black; text-transform:uppercase"> Welcome <strong>{{current_user.first_name}} {{current_user.last_name}}</strong></h1>
+    <div class="container-fluid row"> 
+        <div class="col-1"></div>
+        <div class="col-5"> 
+            <h2 style="padding: 30px 0 30px 0"> Quote Dashboard</h2>
+            <br>
+            {% for quote in quotes %}
+            {{ quote.quoted_by }} : {{ quote.quote_text }}
+            <p> Posted by: <a href = "/users/{{quote.author.id}}"> {{quote.author}} </a> </p>
+            <button style = "color:black" align="right" type="submit" class="btn btn-outline-dark btn-lg">
+            <a href='/like/{{quote.id}}'>Like</a>
+            </button><br><br>
+            <p>Number of likes: {{quote.favorites.count}}</p>
+            {% endfor %}
+            <br><br>
+            <br><br>
+        </div> 
+    <div> 
+
+    <h2 style="padding: 10px 0 20px 60px"> Add a Quote:</h2>
+    <div style = "padding: 30px 0 30px 50px">
+    <form action = '/quote' method = "POST">
+        {% csrf_token %}
+        <div class = "form-group">
+            <label for = "quoted_by"> Author </label>
+            <textarea name = 'quote_author' rows = '1' cols = '50' class="form-control" id="quoted_by" placeholder = 'Quoted by..'> </textarea>
+        </div>
+        <div class = "form-group">
+            <label for = "message"> Quote </label>
+            <textarea name = 'quote' rows = '3' cols = '50' class="form-control" id="quoted_by" placeholder = 'Your quote here..'> </textarea><br>
+        </div>
+        <div style = "color:red; padding-bottom: 10px">
+            {% if messages %}
+            {% for message in messages %}
+                {% if message.extra_tags == "quote_post" %}
+                    {{ message }}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        </div>
+        <button style = "color:black" align="right" type="submit" class="btn btn-outline-dark btn-lg"> Submit </button>
+    </form>
+    </div>
+    
+
+
+
+
+    </body>
+</html>

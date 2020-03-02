@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+    <head>
+        <title> User Quotes</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+
+    <body style = "padding: 10px 10px 10px 60px">
+        <div style="padding: 20px 20px 10px 90%">
+        <button style = "color:rgb(243, 234, 234)" align="right" type="submit" class="btn btn-outline-success btn-lg">
+            <a href = '/logout'> Logout </a>
+        </button>
+        </div>
+        
+        <div style="padding: 20px 20px 10px 90%">
+            <a href = '/dashboard'> Back </a>
+        </div>
+        
+    <div class="container-fluid row"> 
+        <div class="col-1"></div>
+        <div class="col-5"> 
+                
+        <h2 style="padding: 30px 0 30px 0"><strong>{{user.first_name}} {{user.last_name}}'s Quotes:</strong></h2><br>
+        {% for quote in quotes %}
+        {{ quote.quoted_by }} : {{ quote.quote_text }}
+        {% endfor %}
+        <br><br>
+        </div>
+        
+    </div>
+        <br><br>
+    </body>
+</html>

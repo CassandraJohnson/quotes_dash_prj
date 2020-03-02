@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Edit Account</title>
+</head>
+
+<body style="padding: 10px 10px 10px 60px">
+  <div style="padding: 20px 20px 10px 90%">
+    <button style="color:rgb(243, 234, 234)" align="right" type="submit" class="btn btn-outline-success btn-lg">
+      <a href='/logout'> Logout </a>
+    </button>
+  </div>
+
+  <div style="padding: 20px 20px 10px 90%">
+    <a href='/dashboard'> Back </a>
+  </div>
+  <br>
+
+  {% for user in user_data %}
+  {% endfor %}
+  
+    <!--h2 style="padding: 10px 0 20px 140">Edit My Account</!--h2-->
+  <!--div style = "padding: 30px 0 30px 0px"></!--div-->
+  
+<div class="container-fluid row">
+    <div class="col-1"></div>
+    <div class="col-5">
+        <h2 style="padding: 30px 0 30px 0"> Edit My Account </h2>
+        <div style="color: red">
+        {% if messages %}
+          {% for message in messages %}
+            {% if message.extra_tags == "edit_user" %}
+              {{ message }}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+      <br>
+
+      <form action="/users/edit" method="POST">
+        {% csrf_token %}
+        <!--input type=“hidden” value=“{{user.id}}” name=“id”-->
+        <div class="form-group row">
+          <label for="first_name" class="col-3 col-form-label"> First Name: </label>
+          <input id="first_name" type="text" name="first_name" class="form-control col-9">
+        </div>
+        <div class="form-group row">
+          <label for="last_name" class="col-3 col-form-label"> Last Name: </label>
+          <input id="last_name" class="form-control col-9" type="text" name="last_name">
+        </div>
+        <div class="form-group row">
+          <label for="email" class="col-3 col-form-label"> Email: </label>
+          <input id="email" type="email" name="email" class="form-control col-9">
+        </div>
+        <br>
+        <button style="color:black" align="right" type="submit" class="btn btn-outline-dark btn-lg"> Submit </button>
+
+      </form>
+    </div>
+    
+
+
+    <!--{% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}-->
+  </div>
+</body>
+
+</html>
